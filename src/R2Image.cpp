@@ -274,7 +274,7 @@ Blur(double sigma)
   for(int i=0;i<f_width;i++){
     for(int j=0;j<f_width;j++){
       R2Pixel pixel = filter.Pixel(i,j);
-      rad = (pow((float)i-center,2) + pow((float)j-center,2));
+      rad = (pow((float)(i-center),2) + pow((float)(j-center),2));
       val = min(1.0,exp(-rad/(2*sigma*sigma))/(sigma*sigma*2*M_PI));
       pixel.SetBlue(val);
       pixel.SetGreen(val);
@@ -430,7 +430,7 @@ Composite(const R2Image& top, int operation)
   for (int j = 0; j < height; j++) {
     for (int i = 0; i < width; i++) { 
       R2Pixel pixel = Pixel(i,j);
-      auto alpha = top.Pixel(i,j).Alpha();
+      double alpha = top.Pixel(i,j).Alpha();
       pixel.SetRed(top.Pixel(i,j).Red() * alpha + pixel.Red() * (1-alpha));
       pixel.SetGreen(top.Pixel(i,j).Green() * alpha + pixel.Green() * (1-alpha));
       pixel.SetBlue(top.Pixel(i,j).Blue() * alpha + pixel.Blue() * (1-alpha));

@@ -9,7 +9,6 @@
 
 CXX=c++
 CXXFLAGS=-Wall -I. -g -DUSE_JPEG
-LDFLAGS=-lX11
 
 
 #
@@ -54,7 +53,7 @@ imgpro: imgpro.o R2Image.o R2Pixel.o R2/libR2.a jpeg/libjpeg.a
 
 morphlines: morphlines.o R2Image.o R2Pixel.o R2/libR2.a jpeg/libjpeg.a fglut/libfglut.a
 	rm -f $@
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ $(GLLIBS)  -lm -o $@
+	$(CXX) $(CXXFLAGS) $^ $(GLLIBS)  -lm -o $@
 
 R2Image.o: R2Image.cpp R2Image.h
 
