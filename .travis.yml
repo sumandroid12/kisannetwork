@@ -1,6 +1,6 @@
 language: cpp
 install: make
 script: make
-compiler: gcc
+compiler: clang
 os:
 - osx
