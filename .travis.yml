@@ -1,5 +1,6 @@
 language: cpp
 install: make
+script: make
 compiler: clang
 os:
 - linux
