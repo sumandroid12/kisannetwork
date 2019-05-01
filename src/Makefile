@@ -9,6 +9,7 @@
 
 CXX=c++
 CXXFLAGS=-Wall -I. -g -DUSE_JPEG
+LDFLAGS=-lX11
 
 
 #
@@ -18,6 +19,7 @@ UNAME := $(shell uname)
 ifneq (,$(findstring Darwin,$(UNAME)))
 	GLLIBS = -framework GLUT -framework OpenGL 
         CXXFLAGS := $(CXXFLAGS) -mmacosx-version-min=10.8
+	LDFLAGS=""
 else
   ifneq (,$(findstring CYGWIN,$(UNAME)))
 	GLLIBS = -lglu32 -lopengl32 -lwinmm -lgdi32
@@ -53,7 +55,7 @@ imgpro: imgpro.o R2Image.o R2Pixel.o R2/libR2.a jpeg/libjpeg.a
 
 morphlines: morphlines.o R2Image.o R2Pixel.o R2/libR2.a jpeg/libjpeg.a fglut/libfglut.a
 	rm -f $@
-	$(CXX) $(CXXFLAGS) $^ $(GLLIBS)  -lm -o $@
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ $(GLLIBS)  -lm -o $@
 
 R2Image.o: R2Image.cpp R2Image.h
 
