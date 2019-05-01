@@ -4,3 +4,9 @@ script: make
 compiler: clang
 os:
 - linux
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libx11-dev
