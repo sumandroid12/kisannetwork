@@ -403,10 +403,10 @@ Scale(double sx, double sy, int sampling_method)
       int gxi = (int)gx;
       int gyi = (int)gy;
       // Get four surrounding pixels
-      auto c00 = Pixel(gxi,gyi);
-      auto c01 = Pixel(gxi,gyi+1);
-      auto c10 = Pixel(gxi+1,gyi);
-      auto c11 = Pixel(gxi+1,gyi+1);
+      R2Pixel c00 = Pixel(gxi,gyi);
+      R2Pixel c01 = Pixel(gxi,gyi+1);
+      R2Pixel c10 = Pixel(gxi+1,gyi);
+      R2Pixel c11 = Pixel(gxi+1,gyi+1);
       for(int i=0;i<3;i++){
         if(sampling_method == R2_IMAGE_BILINEAR_SAMPLING)
           new_image.Pixel(x,y)[i] = blinterp(c00[i],c10[i],c01[i],c11[i],gx-gxi,gy-gyi);
@@ -430,7 +430,7 @@ Composite(const R2Image& top, int operation)
   for (int j = 0; j < height; j++) {
     for (int i = 0; i < width; i++) { 
       R2Pixel pixel = Pixel(i,j);
-      auto alpha = top.Pixel(i,j).Alpha();
+      double alpha = top.Pixel(i,j).Alpha();
       pixel.SetRed(top.Pixel(i,j).Red() * alpha + pixel.Red() * (1-alpha));
       pixel.SetGreen(top.Pixel(i,j).Green() * alpha + pixel.Green() * (1-alpha));
       pixel.SetBlue(top.Pixel(i,j).Blue() * alpha + pixel.Blue() * (1-alpha));
